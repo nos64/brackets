@@ -17,7 +17,7 @@ module.exports = function check(str, bracketsConfig) {
     // console.log('currentSymbol: ', currentSymbol);
   
     if (OPEN_BRACKETS.includes(currentSymbol)) {
-
+      if (BRACKETS_PAIR[currentSymbol] === currentSymbol) continue
         stack.push(currentSymbol);
         // console.log('stack: ', stack);
 
@@ -30,13 +30,16 @@ module.exports = function check(str, bracketsConfig) {
       // console.log('topElement: ', topElement);
       if (BRACKETS_PAIR[currentSymbol] === topElement) {
         stack.pop();
+        // console.log('stack: ', stack);
+
       } else {
         return false
       }
     }
-    for (let i = 0; i < stack.length; i++) {
-      if (stack[i] === stack[i-1]) stack = []
-    }
   } 
+  
+  
+  
+  // console.log(stack)
 return stack.length === 0;
 }
